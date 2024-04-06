@@ -201,7 +201,7 @@ namespace CGAL {
         template <typename PolygonMesh>
         void Polygonal_surface_reconstruction<GeomTraits>::output_candidate_faces(PolygonMesh& candidate_faces) const {
                 candidate_faces.clear();        // make sure it is empty.
-                CGAL::copy_face_graph(candidate_faces_, candidate_faces);
+                candidate_faces = candidate_faces_;
         }
 
 
