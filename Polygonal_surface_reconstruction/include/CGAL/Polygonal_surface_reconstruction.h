@@ -248,6 +248,9 @@ namespace CGAL {
                 // Gives each face an index
                 typename Polygon_mesh::template Property_map<Face_descriptor, std::size_t> face_indices =
                         target_mesh.template add_property_map<Face_descriptor, std::size_t>("f:index").first;
+                
+                typename Polygon_mesh::template Property_map<Face_descriptor, bool> face_selected = 
+                        candidate_faces_.template add_property_map<Face_descriptor, bool>("f:selected").first;
 
                 double total_points = 0.0;
                 std::size_t idx = 0;
@@ -256,6 +259,9 @@ namespace CGAL {
                         face_indices[f] = idx;
                         ++idx;
                 }
+
+                for (auto f : candidate_faces_.faces())
+                        face_selected[f] = true;
 
 
                 typedef MixedIntegerProgramTraits                                                                MIP_Solver;
@@ -419,7 +425,10 @@ namespace CGAL {
                         std::size_t f_idx(0);
                         for(auto f : target_mesh.faces()) {
                                 if (static_cast<int>(std::round(X[f_idx])) == 0)
+                                {
                                         to_delete.push_back(f);
+                                        face_selected[f] = false;
+                                }
                                 ++f_idx;
                         }
 
