@@ -482,6 +482,10 @@ the requirement for traversal of all faces in a graph.
 /// I/O Functions for the \ref IOStreamOBJ
 /// \ingroup PkgBGLIOFct
 
+/// \defgroup PkgBGLIoFuncsOM OM I/O Functions
+/// I/O Functions for the \ref IOStreamOM
+/// \ingroup PkgBGLIOFct
+
 /// \defgroup PkgBGLIoFuncsOFF OFF I/O Functions
 /// I/O Functions for the \ref IOStreamOFF
 /// \ingroup PkgBGLIOFct
@@ -677,10 +681,8 @@ user might encounter.
 - `CGAL::is_valid_face_graph()`
 - `CGAL::is_valid_polygon_mesh()`
 
-- `CGAL::is_tetrahedron()
-
-`
 \cgalCRPSection{Generator Functions}
+- `CGAL::is_tetrahedron()`
 - `CGAL::is_hexahedron()`
 - `CGAL::make_triangle()`
 - `CGAL::make_tetrahedron()`
@@ -692,6 +694,7 @@ user might encounter.
 - `CGAL::make_grid()`
 
 - `CGAL::clear()`
+- `CGAL::remove_all_elements()`
 - `CGAL::copy_face_graph()`
 
 - `CGAL::set_triangulation_ids()`
