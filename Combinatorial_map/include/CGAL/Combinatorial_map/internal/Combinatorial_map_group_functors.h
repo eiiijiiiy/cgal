@@ -534,18 +534,21 @@ struct Degroup_nonvoid_attribute_functor_run
     if ( a1!=amap.template attribute<i>(adart2) &&
          amap.template attribute<i>(adart2)!=CMap::null_descriptor ) return;
 
-    CGAL_assertion( (!CGAL::belong_to_same_cell<CMap,i>
-                     (amap, adart1, adart2)) );
+    // CGAL_assertion( (!CGAL::belong_to_same_cell<CMap,i>
+    //                  (amap, adart1, adart2)) );
+    if ( (!CGAL::belong_to_same_cell<CMap,i>
+                     (amap, adart1, adart2)) )
+    {
+      // As we split, we set the dart of the first attribute to adart1 for which
+      // we are sure it belongs to the first i-cell.
+      amap.template set_dart_of_attribute<i>(a1, adart1);
 
-    // As we split, we set the dart of the first attribute to adart1 for which
-    // we are sure it belongs to the first i-cell.
-    amap.template set_dart_of_attribute<i>(a1, adart1);
+      typename CMap::template Attribute_descriptor<i>::type
+        a2 = amap.template copy_attribute<i>(a1);
 
-    typename CMap::template Attribute_descriptor<i>::type
-      a2 = amap.template copy_attribute<i>(a1);
-
-    amap.template set_attribute<i>(adart2, a2);
-    CGAL::internal::Call_split_functor<CMap, i>::run(amap, a1, a2);
+      amap.template set_attribute<i>(adart2, a2);
+      CGAL::internal::Call_split_functor<CMap, i>::run(amap, a1, a2);
+    }
   }
 };
 // Specialization for i==j.
