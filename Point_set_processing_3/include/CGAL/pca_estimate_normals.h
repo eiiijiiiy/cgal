@@ -189,7 +189,7 @@ pca_estimate_normals(
   CGAL_precondition(points.begin() != points.end());
 
   // precondition: at least 2 nearest neighbors
-  CGAL_precondition(k >= 2);
+  if (neighbor_radius == 0) CGAL_precondition(k >= 2);
 
   std::size_t memory = CGAL::Memory_sizer().virtual_size();
   CGAL_TRACE_STREAM << (memory >> 20) << " Mb allocated\n";

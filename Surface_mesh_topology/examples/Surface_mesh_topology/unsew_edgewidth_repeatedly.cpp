@@ -17,7 +17,6 @@ using Dart_container   =std::vector<Dart_descriptor>;
 using Point            =LCC_3::Point;
 using Path_on_surface  =CGAL::Surface_mesh_topology::Path_on_surface<LCC_3>;
 using CST              =CGAL::Surface_mesh_topology::Curves_on_surface_topology<LCC_3>;
-
 struct Weight_functor
 {
   Weight_functor(const LCC_3& lcc) : m_lcc(lcc) {}

@@ -240,6 +240,7 @@ struct GMap_degroup_attribute_functor_run
     if ( a1!=amap.template attribute<i>(adart2) &&
          amap.template attribute<i>(adart2)!=GMap::null_descriptor ) return;
 
+    
     CGAL_assertion( (!CGAL::belong_to_same_cell<GMap,i>
                      (amap, adart1, adart2)) );
 

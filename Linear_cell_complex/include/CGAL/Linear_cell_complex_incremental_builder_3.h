@@ -261,7 +261,7 @@ public:
     prev_dart =lcc.null_descriptor;
   }
 
-  void add_vertex_to_facet(size_type i)
+  bool add_vertex_to_facet(size_type i)
   {
     CGAL_assertion(i<vertex_map.size());
     // std::cout<<i<<"  "<<std::flush;
@@ -278,6 +278,8 @@ public:
         CGAL_assertion( lcc.template is_free<2>(opposite) );
         lcc.template set_opposite<2>(prev_dart, opposite);
       }
+      else
+        return false;
 
       Add_edge_in_associative_array<LCC>::run(lcc, prev_dart,
                                               vertex_to_dart_map_in_surface);
@@ -289,6 +291,7 @@ public:
     { first_dart=cur_dart; min_vertex=max_vertex=i; min_dart=cur_dart; }
 
     prev_dart=cur_dart;
+    return true;
   }
 
   // End of the facet. Return the first dart of this facet.
